@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Decentralized Web Chat App" />
+    <meta name="keywords" content="HTML, CSS, JavaScript, GunJs" />
+    http://127.0.0.1:5500/test/index.html
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Aditya Dhade" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js"
+      integrity="sha512-hI8jEOQLtyzkIiWVygLAcKPradIhgXQUl8I3lk2FUmZ8sZNbSSdHHrWo5mrmsW1Aex+oFZ+UUK7EJTVwyjiFLA=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gun@0.2020.1235/gun.js"
+      integrity="sha512-F7/rW8ee5HU9r0zrXffpHjsPHtZCKW0OE1+BWnK+9eUV+kkosMtiDx9FwpNzEwY1tSXEvGVwf47zgs1X51eUmA=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gun@0.2020.1235/sea.js"
+      integrity="sha512-SrFIaBUXFdV+L1c+5Sh0i2uxlssCgYjKrjIhOdoMvKxM/JJsCwXpM/rnCPAjCWSmScvnQtX+qM+wlhVTMrZaJQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+    ></script>
+    <title>D-Chat</title>
+  </head>
+  <body>
+    <a href="http://127.0.0.1:5500/test/invite.html">Invite</a>
+    <div id="error"></div>
+    <form id="sign">
+      <input id="alias" placeholder="username" required />
+      <input
+        id="pass"
+        type="password"
+        placeholder="passphrase"
+        minlength="8"
+        required
+      />
+      <input id="in" type="submit" value="sign in" />
+      <input id="up" type="button" value="sign up" />
+    </form>
+    <div id="username"></div>
+    <form id="chat" style="display: none">
+      <input
+        id="request"
+        type="text"
+        placeholder="Invite Code"
+        title="public key"
+        required
+      />
+      <input type="submit" value="Add+" />
+    </form>
+    <div id="btns" style="display: none">
+      <button id="sBtn" onclick="getAllData()" type="button">
+        Refresh Messages
+      </button>
+      <button id="cBtn" onclick="copyPublicKey()" type="button">
+        Copy Invite Code
+      </button>
+      <h5>Chats</h5>
+    </div>
+    <div id="chats" style="display: flex; flex-direction: column"></div>
+    <div id="list"></div>
+    <script src="./static/index.js"></script>
+  </body>
+</html>
