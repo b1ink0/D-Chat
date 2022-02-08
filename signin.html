@@ -25,18 +25,21 @@
       integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./static/css/signin.css" />
     <title>SignIn / SignUp</title>
   </head>
   <body>
-    <h1>Sign In / Sign Up</h1>
+    <h1 class="w-full text-center text text-5xl">D-Chat</h1>
     <section id="signup_section">
-      <form id="sign" class="flex flex-col">
+      <h1>Sign In / Sign Up</h1>
+      <form id="sign" class="flex flex-col ju">
         <input id="alias" placeholder="username" required />
         <input
           id="pass"
           type="password"
           placeholder="passphrase"
           minlength="8"
+          autocomplete="on"
           required
         />
         <button type="submit" id="in">Sign In</button>
@@ -52,7 +55,7 @@
       const user = gun.user();
       user.recall({ sessionStorage: true });
     </script>
-    <script src="./static/handleSign.js"></script>
-    <script src="./static/handleAutoSignin.js"></script>
+    <script src="./static/js/handleSign.js"></script>
+    <script src="./static/js/handleAutoSignin.js"></script>
   </body>
 </html>

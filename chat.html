@@ -30,6 +30,7 @@
       integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./static/css/chat.css" />
     <title>D-Chat</title>
   </head>
   <body>
@@ -43,7 +44,7 @@
       </button>
       <h5>Chats</h5>
     </div>
-    <div id="chats" style="display: flex; flex-direction: column"></div>
+    <div id="chats" class="flex flex-col"></div>
     <div id="list"></div>
     <script>
       const gun = Gun([
@@ -60,13 +61,14 @@
       let handleDeSea = () => {};
       let keys = {};
     </script>
-    <script src="./static/handleAutoSignin.js"></script>
-    <script src="./static/handleSignedIn.js"></script>
-    <script src="./static/handleCodeGen.js"></script>
-    <script src="./static/handleSea.js"></script>
-    <script src="./static/handleJSEncrypt.js"></script>
-    <script src="./static/handleCopyInviteLink.js"></script>
-    <script src="./static/handleGetAllChats.js"></script>
-    <script src="./static/handleCurrentChat.js"></script>
+    <script src="./static/js/handleChatRequest.js"></script>
+    <script src="./static/js/handleAutoSignin.js"></script>
+    <script src="./static/js/handleSignedIn.js"></script>
+    <script src="./static/js/handleCodeGen.js"></script>
+    <script src="./static/js/handleSea.js"></script>
+    <script src="./static/js/handleJSEncrypt.js"></script>
+    <script src="./static/js/handleCopyInviteLink.js"></script>
+    <script src="./static/js/handleGetAllChats.js"></script>
+    <script src="./static/js/handleCurrentChat.js"></script>
   </body>
 </html>
