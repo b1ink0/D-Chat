@@ -2,10 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Decentralized Web Chat App" />
-    <meta name="keywords" content="HTML, CSS, JavaScript, GunJs" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Aditya Dhade" />
     <script
       src="https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js"
       integrity="sha512-hI8jEOQLtyzkIiWVygLAcKPradIhgXQUl8I3lk2FUmZ8sZNbSSdHHrWo5mrmsW1Aex+oFZ+UUK7EJTVwyjiFLA=="
@@ -36,13 +34,17 @@
   </head>
   <body>
     <h1>D-Chat</h1>
-    <a href="./signin.html">SignIn / SignUp</a>
-    <!-- <input
-      id="inputFileToLoad"
-      type="file"
-      onchange="encodeImageFileAsURL();"
-    /> -->
-    <!-- <div id="imgTest"></div> -->
+    <div id="btns">
+      <button id="sBtn" onclick="handleGetAllChats()" type="button">
+        Refresh Messages
+      </button>
+      <button id="cBtn" onclick="handleCopyInviteLink()" type="button">
+        Copy Invite Code
+      </button>
+      <h5>Chats</h5>
+    </div>
+    <div id="chats" style="display: flex; flex-direction: column"></div>
+    <div id="list"></div>
     <script>
       const gun = Gun([
         //  "http://localhost:8000/gun",
@@ -51,10 +53,20 @@
       let SEA = Gun.SEA;
       const user = gun.user();
       user.recall({ sessionStorage: true });
+      let myUsername = "";
+      gun.user(user.is.alias).on((data) => (myUsername = data.alias));
+      let handleCodeGen = () => {};
+      let handleEnSea = () => {};
+      let handleDeSea = () => {};
+      let keys = {};
     </script>
-    <script src="./static/index.js"></script>
-    <script src="./static/image.js"></script>
     <script src="./static/handleAutoSignin.js"></script>
+    <script src="./static/handleSignedIn.js"></script>
+    <script src="./static/handleCodeGen.js"></script>
+    <script src="./static/handleSea.js"></script>
+    <script src="./static/handleJSEncrypt.js"></script>
     <script src="./static/handleCopyInviteLink.js"></script>
+    <script src="./static/handleGetAllChats.js"></script>
+    <script src="./static/handleCurrentChat.js"></script>
   </body>
 </html>

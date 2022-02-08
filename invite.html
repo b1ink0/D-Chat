@@ -24,74 +24,25 @@
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
       crossorigin="anonymous"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@%5E2.0/dist/tailwind.min.css"
+      integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
+      crossorigin="anonymous"
+    />
     <title>Invite</title>
   </head>
   <body>
     <h1>Invite</h1>
     <script>
-      const getCharCodes = (s) => {
-        let charCodeArr = [];
-        for (let i = 0; i < s.length; i++) {
-          let code = s.charCodeAt(i);
-          charCodeArr.push(code);
-        }
-        charCodeArr.reduce((a, b) => a + b, 0);
-        return charCodeArr;
-      };
-
-      const code = (s) => {
-        let sum = getCharCodes(s).reduce((a, b) => a + b, 0);
-        sum = sum.toString();
-        sum = "Z" + sum;
-        return sum;
-      };
-
-      let SEA = Gun.SEA;
       const gun = Gun([
         //  "http://localhost:8000/gun",
         "https://gun-server-1.herokuapp.com/gun",
       ]);
-      gun.on("auth", function () {
-        console.log("auth");
-      });
-      if (
-        localStorage.getItem("flag") == null ||
-        localStorage.getItem("flag") == "null"
-      ) {
-        console.log("run");
-        localStorage.setItem("flag", "false");
-      }
-      if (sessionStorage.getItem("pair")) {
-        const params = new URLSearchParams(window.location.search);
-        if (params.has("code")) {
-          let inviteCode = code(params.get("code"));
-          gun.user(params.get("code")).once((d) => {
-            if (d == undefined) {
-              gun.user(params.get("code")).once((d) => {
-                if (localStorage.getItem("flag") == "false") {
-                  setTimeout(() => {
-                    localStorage.setItem("flag", "true");
-                    window.location.reload();
-                  }, 5000);
-                } else {
-                  localStorage.setItem("flag", "null");
-                  console.log("User Does not exits!");
-                }
-              });
-            } else {
-              localStorage.setItem("code", JSON.stringify(d.pub));
-              localStorage.setItem("flag_1", "true");
-              window.location.replace(
-                `${window.location.origin}/test/index.html`
-              );
-            }
-          });
-        } else {
-          window.location.replace(`${window.location.origin}/test/index.html`);
-        }
-      } else {
-        window.location.replace(`${window.location.origin}/test/index.html`);
-      }
+      const SEA = Gun.SEA;
+      const code = () => {};
     </script>
+    <script src="./static/handleCodeGen.js"></script>
+    <script src="./static/handleInvite.js"></script>
   </body>
 </html>

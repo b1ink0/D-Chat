@@ -1,4 +1,3 @@
-let SEA = Gun.SEA;
 let sign = false;
 let pkey = "";
 let userData;
@@ -14,23 +13,27 @@ const getCharCodes = (s) => {
   charCodeArr.reduce((a, b) => a + b, 0);
   return charCodeArr;
 };
+
 const code = (s) => {
   let sum = getCharCodes(s).reduce((a, b) => a + b, 0);
   sum = sum.toString();
   sum = "Z" + sum;
   return sum;
 };
+
 const en = (key, data) => {
   let encrypt = new JSEncrypt();
   encrypt.setPublicKey(key);
   let enc = encrypt.encrypt(data);
   return enc;
 };
+
 const ensea = async (pair, data) => {
   let enc = await SEA.encrypt(data, pair);
   // console.log(enc)
   return enc;
 };
+
 const desea = async (pair, data) => {
   var dec = await SEA.decrypt(data, pair);
   // console.log(dec)
@@ -43,8 +46,9 @@ const de = (key, data) => {
   var uncrypted = decrypt.decrypt(data);
   return uncrypted;
 };
+
 const copyPublicKey = () => {
-  let t = `${window.location.origin}/test/invite.html?code=${userData.pub}`;
+  let t = `${window.location.origin}/D-Chat/invite.html?code=${userData.pub}`;
   var input = document.createElement("input");
   input.setAttribute("value", t);
   document.body.appendChild(input);
@@ -54,14 +58,6 @@ const copyPublicKey = () => {
   alert("Copied!");
   return result;
 };
-
-const gun = Gun([
-  //  "http://localhost:8000/gun",
-  "https://gun-server-1.herokuapp.com/gun",
-]);
-
-const user = gun.user();
-user.recall({ sessionStorage: true });
 
 const getAllData = () => {
   $("#chats").html("");
@@ -84,6 +80,7 @@ const getAllData = () => {
       });
     });
   });
+
   let pubCode = code(userData.pub);
   gun.get(pubCode).once(() => {
     gun.get(pubCode).on((n) => {
@@ -109,6 +106,7 @@ const getAllData = () => {
                           JSON.parse(l).pkey
                         }", true)'>R: ${m}</button>`
                       );
+                      gun.get(pubCode).off();
                     }
                   });
                 });
@@ -146,54 +144,57 @@ $("#sign").on("submit", function (e) {
   });
 });
 
-gun.on("auth", function () {
-  console.log("auth");
-  sign = true;
-  $("#sign").hide();
-  $("#btns").show();
-  $("#chat").show();
-  userData = JSON.parse(sessionStorage.getItem("pair"));
-
-  gun.user(userData.pub).once(() => {
-    gun.user(userData.pub).once((data) => {
-      myUsername = data.alias;
-      $("#username").append(`<h3>Username: ${myUsername}</h3>`);
+const handleSignedIn = () => {
+  gun.on("auth", function () {
+    console.log("auth");
+    sign = true;
+    $("#sign").hide();
+    $("#btns").show();
+    $("#chat").show();
+    userData = JSON.parse(sessionStorage.getItem("pair"));
+    localStorage.setItem("localPair", JSON.stringify(userData));
+    gun.user(userData.pub).once(() => {
+      gun.user(userData.pub).once((data) => {
+        myUsername = data.alias;
+        $("#username").append(`<h3>Username: ${myUsername}</h3>`);
+      });
     });
-  });
-  user.get("keys").once(() => {
-    user.get("keys").once((data) => {
-      if (data == undefined) {
-        let obj = new JSEncrypt({ default_key_size: 1024 });
-        obj.getKey();
-        let public = obj.getPublicKey();
-        let private = obj.getPrivateKey();
-        public = public.replace(/(\r\n|\n|\r)/gm, "");
-        private = private.replace(/(\r\n|\n|\r)/gm, "");
-        keys = {
-          pub: public,
-          pri: private,
-        };
-        let t = ensea(userData, private);
-        t.then((data) => {
-          let temp = {
-            pub: public,
-            pri: data,
-          };
-          user.get("keys").put(temp);
-        });
-      } else {
-        let t = desea(userData, data.pri);
-        t.then((d) => {
+    user.get("keys").once(() => {
+      user.get("keys").once((data) => {
+        if (data == undefined) {
+          let obj = new JSEncrypt({ default_key_size: 1024 });
+          obj.getKey();
+          let public = obj.getPublicKey();
+          let private = obj.getPrivateKey();
+          public = public.replace(/(\r\n|\n|\r)/gm, "");
+          private = private.replace(/(\r\n|\n|\r)/gm, "");
           keys = {
-            pri: d,
-            pub: data.pub,
+            pub: public,
+            pri: private,
           };
-          getAllData();
-        });
-      }
+          let t = ensea(userData, private);
+          t.then((data) => {
+            let temp = {
+              pub: public,
+              pri: data,
+            };
+            user.get("keys").put(temp);
+          });
+        } else {
+          let t = desea(userData, data.pri);
+          t.then((d) => {
+            keys = {
+              pri: d,
+              pub: data.pub,
+            };
+            getAllData();
+          });
+        }
+      });
     });
   });
-});
+};
+handleSignedIn();
 
 $("#chat").on("submit", function (e) {
   e.preventDefault();
@@ -303,9 +304,8 @@ const sentMessageDisplay = (publicKey, un, pk = "", flag = false) => {
   }
 };
 
-console.log(window.location.href);
-
 if (localStorage.getItem("flag_1") == "true") {
+  console.log(localStorage.getItem("flag_1"));
   if (localStorage.getItem("code")) {
     setTimeout(() => {
       handleChat(JSON.parse(localStorage.getItem("code")));

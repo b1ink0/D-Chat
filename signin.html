@@ -2,15 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Decentralized Web Chat App" />
-    <meta name="keywords" content="HTML, CSS, JavaScript, GunJs" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Aditya Dhade" />
-    <script
-      src="https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js"
-      integrity="sha512-hI8jEOQLtyzkIiWVygLAcKPradIhgXQUl8I3lk2FUmZ8sZNbSSdHHrWo5mrmsW1Aex+oFZ+UUK7EJTVwyjiFLA=="
-      crossorigin="anonymous"
-    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/gun@0.2020.1235/gun.js"
       integrity="sha512-F7/rW8ee5HU9r0zrXffpHjsPHtZCKW0OE1+BWnK+9eUV+kkosMtiDx9FwpNzEwY1tSXEvGVwf47zgs1X51eUmA=="
@@ -32,17 +25,24 @@
       integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
       crossorigin="anonymous"
     />
-    <title>D-Chat</title>
+    <title>SignIn / SignUp</title>
   </head>
   <body>
-    <h1>D-Chat</h1>
-    <a href="./signin.html">SignIn / SignUp</a>
-    <!-- <input
-      id="inputFileToLoad"
-      type="file"
-      onchange="encodeImageFileAsURL();"
-    /> -->
-    <!-- <div id="imgTest"></div> -->
+    <h1>Sign In / Sign Up</h1>
+    <section id="signup_section">
+      <form id="sign" class="flex flex-col">
+        <input id="alias" placeholder="username" required />
+        <input
+          id="pass"
+          type="password"
+          placeholder="passphrase"
+          minlength="8"
+          required
+        />
+        <button type="submit" id="in">Sign In</button>
+        <button type="button" id="up">Sign Up</button>
+      </form>
+    </section>
     <script>
       const gun = Gun([
         //  "http://localhost:8000/gun",
@@ -52,9 +52,7 @@
       const user = gun.user();
       user.recall({ sessionStorage: true });
     </script>
-    <script src="./static/index.js"></script>
-    <script src="./static/image.js"></script>
+    <script src="./static/handleSign.js"></script>
     <script src="./static/handleAutoSignin.js"></script>
-    <script src="./static/handleCopyInviteLink.js"></script>
   </body>
 </html>
