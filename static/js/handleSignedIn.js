@@ -2,17 +2,8 @@ const handleSignedIn = () => {
   if (user.is) {
     console.log("auth");
     sign = true;
-    $("#sign").hide();
-    $("#btns").show();
-    $("#chat").show();
     userData = JSON.parse(sessionStorage.getItem("pair"));
     localStorage.setItem("localPair", JSON.stringify(userData));
-    gun.user(userData.pub).once(() => {
-      gun.user(userData.pub).once((data) => {
-        myUsername = data.alias;
-        $("#username").append(`<h3>Username: ${myUsername}</h3>`);
-      });
-    });
     user.get("keys").once(() => {
       user.get("keys").once((data) => {
         if (data == undefined) {
@@ -26,7 +17,7 @@ const handleSignedIn = () => {
             pub: public,
             pri: private,
           };
-          let t = ensea(userData, private);
+          let t = handleEnSea(userData, private);
           t.then((data) => {
             let temp = {
               pub: public,

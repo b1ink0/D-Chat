@@ -1,0 +1,44 @@
+@import "./mixin.scss";
+
+#logo {
+  @include full-flex-row;
+  margin-top: 30px;
+  h1 {
+    font-size: 35px;
+  }
+}
+section {
+  @include full-flex-row;
+  margin-top: 35px;
+  #form_container {
+    @include full-flex-col;
+    justify-content: flex-start;
+    border: 3px solid var(--border-color);
+    border-radius: 15px;
+    padding: 15px 30px 15px 30px;
+    width: 300px;
+    height: 400px;
+    h1 {
+      margin-bottom: 10px;
+    }
+    h3 {
+      color: var(--warning-color);
+    }
+    form {
+      width: 100%;
+      @include full-flex-col;
+      input {
+        @include input-field;
+      }
+      div {
+        @include full-flex-row;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 20px;
+        button {
+          @include btns;
+        }
+      }
+    }
+  }
+}

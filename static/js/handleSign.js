@@ -3,9 +3,11 @@ $("#up").on("click", function (e) {
     gun.get(`~@${$("#alias").val()}`).once((data) => {
       if (data == undefined) {
         $("#error").html("");
-        user.create($("#alias").val(), $("#pass").val());
+        user.create($("#alias").val(), $("#pass").val(), () => {
+          window.location.replace(`${window.location.origin}/D-Chat/chat.html`);
+        });
       } else {
-        $("#error").html("<h4>Username Already Exist</h4>");
+        $("#error").html("Username Already Exist");
       }
     });
   });
@@ -17,9 +19,29 @@ $("#sign").on("submit", function (e) {
     if (data.err) {
       user.auth($("#alias").val(), $("#pass").val(), (data) => {
         if (data.err) {
-          user.auth($("#alias").val(), $("#pass").val());
+          user.auth($("#alias").val(), $("#pass").val(), (data) => {
+            if (data.err) {
+              $("#error").html("Wrong Username Or Password");
+            } else {
+              setTimeout(() => {
+                window.location.replace(
+                  `${window.location.origin}/D-Chat/chat.html`
+                );
+              }, 1000);
+            }
+          });
+        } else {
+          setTimeout(() => {
+            window.location.replace(
+              `${window.location.origin}/D-Chat/chat.html`
+            );
+          }, 1000);
         }
       });
+    } else {
+      setTimeout(() => {
+        window.location.replace(`${window.location.origin}/D-Chat/chat.html`);
+      }, 1000);
     }
   });
 });

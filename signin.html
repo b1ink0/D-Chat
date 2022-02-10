@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
+      src="https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js"
+      integrity="sha512-hI8jEOQLtyzkIiWVygLAcKPradIhgXQUl8I3lk2FUmZ8sZNbSSdHHrWo5mrmsW1Aex+oFZ+UUK7EJTVwyjiFLA=="
+      crossorigin="anonymous"
+    ></script>
+    <script
       src="https://cdn.jsdelivr.net/npm/gun@0.2020.1235/gun.js"
       integrity="sha512-F7/rW8ee5HU9r0zrXffpHjsPHtZCKW0OE1+BWnK+9eUV+kkosMtiDx9FwpNzEwY1tSXEvGVwf47zgs1X51eUmA=="
       crossorigin="anonymous"
@@ -19,32 +24,42 @@
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
       crossorigin="anonymous"
     ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
       rel="stylesheet"
-      href="https://unpkg.com/tailwindcss@%5E2.0/dist/tailwind.min.css"
-      integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
       crossorigin="anonymous"
     />
+
+    <link rel="stylesheet" href="./static/css/common.css" />
     <link rel="stylesheet" href="./static/css/signin.css" />
     <title>SignIn / SignUp</title>
   </head>
   <body>
-    <h1 class="w-full text-center text text-5xl">D-Chat</h1>
+    <div id="logo">
+      <h1>D-Chat</h1>
+    </div>
     <section id="signup_section">
-      <h1>Sign In / Sign Up</h1>
-      <form id="sign" class="flex flex-col ju">
-        <input id="alias" placeholder="username" required />
-        <input
-          id="pass"
-          type="password"
-          placeholder="passphrase"
-          minlength="8"
-          autocomplete="on"
-          required
-        />
-        <button type="submit" id="in">Sign In</button>
-        <button type="button" id="up">Sign Up</button>
-      </form>
+      <div id="form_container">
+        <h1>Sign In / Sign Up</h1>
+        <h3 id="error"></h3>
+        <form id="sign">
+          <input id="alias" placeholder="username" required />
+          <input
+            id="pass"
+            type="password"
+            placeholder="passphrase"
+            minlength="8"
+            autocomplete="on"
+            required
+          />
+          <div>
+            <button type="submit" id="in">Sign In</button>
+            <button type="button" id="up">Sign Up</button>
+          </div>
+        </form>
+      </div>
     </section>
     <script>
       const gun = Gun([
@@ -55,6 +70,8 @@
       const user = gun.user();
       user.recall({ sessionStorage: true });
     </script>
+    <script src="./static/js/handleSea.js"></script>
+    <script src="./static/js/handleSignedIn.js"></script>
     <script src="./static/js/handleSign.js"></script>
     <script src="./static/js/handleAutoSignin.js"></script>
   </body>

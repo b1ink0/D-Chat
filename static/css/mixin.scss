@@ -1,0 +1,33 @@
+@mixin full-flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+}
+@mixin full-flex-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+@mixin input-field {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  outline: none;
+  padding: 0 5px 0 5px;
+}
+@mixin btns {
+  background-color: var(--border-color);
+  height: 35px;
+  width: 110px;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  color: var(--text-color);
+}

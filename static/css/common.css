@@ -1,0 +1,23 @@
+:root {
+  --bg-color: #0e031f;
+  --color-1: #270082;
+  --color-2: #7a0bc0;
+  --color-3: #56c8ff;
+  --text-color: #b08dff;
+  --border-color: #6e3fd6;
+  --warning-color: #ff0000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+/*# sourceMappingURL=common.css.map */

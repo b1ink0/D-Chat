@@ -1,11 +1,11 @@
 const handleAutoLogin = () => {
   let localPair = JSON.parse(localStorage.getItem("localPair"));
   let pair = JSON.parse(sessionStorage.getItem("pair"));
-  if (localPair || pair) {
+  if (localPair) {
     console.log();
     sessionStorage.setItem("recall", true);
     localPair = JSON.stringify(localPair);
-    sessionStorage.setItem("localPair", localPair);
+    sessionStorage.setItem("pair", localPair);
     if (user.is && window.location.pathname == "/D-Chat/signin.html") {
       window.location.replace(`${window.location.origin}/D-Chat/chat.html`);
     } else if (user.is && window.location.pathname == "/D-Chat/index.html") {
