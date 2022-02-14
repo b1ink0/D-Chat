@@ -1,5 +1,18 @@
 @import "./mixin.scss";
 
+#loader {
+  @include full-flex-col;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: var(--bg-color-t);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+}
+
 #logo {
   @include full-flex-row;
   margin-top: 30px;
@@ -7,6 +20,7 @@
     font-size: 35px;
   }
 }
+
 section {
   @include full-flex-row;
   margin-top: 35px;
@@ -15,30 +29,132 @@ section {
     justify-content: flex-start;
     border: 3px solid var(--border-color);
     border-radius: 15px;
-    padding: 15px 30px 15px 30px;
+    padding: 15px 0px 20px 0px;
     width: 300px;
-    height: 400px;
+    min-height: 410px;
+    max-height: 430px;
     h1 {
       margin-bottom: 10px;
     }
-    h3 {
-      color: var(--warning-color);
+    #line {
+      width: 100%;
+      height: 3px !important;
+      background: var(--border-color);
+    }
+    #error {
+      width: 100%;
+      margin-top: 10px;
+      h3 {
+        color: var(--warning-color);
+        width: 100%;
+        padding: 0 15px 0 15px;
+        animation: error_fadein 0.5s ease forwards;
+        font-weight: bold;
+      }
+      @keyframes error_fadein {
+        0% {
+          height: 0;
+          opacity: 0;
+        }
+        50% {
+          height: 50px;
+          opacity: 0;
+        }
+        100% {
+          height: 50px;
+          opacity: 1;
+        }
+      }
     }
     form {
+      transition: all 0.3s;
       width: 100%;
+      padding: 15px 30px 15px 30px;
       @include full-flex-col;
-      input {
-        @include input-field;
+      .input_container {
+        @include full-flex-col;
+        position: relative;
+        input {
+          @include input-field;
+          &:focus ~ label {
+            font-size: 15px;
+            transform: translateY(-20px);
+          }
+        }
+        #pass {
+          padding-right: 40px;
+        }
+        label {
+          width: 100%;
+          padding-left: 5px;
+          text-align: start;
+          position: absolute;
+          pointer-events: none;
+          transition: all 0.3s;
+          font-size: 18px;
+          font-weight: bold;
+        }
+        span {
+          position: absolute;
+          right: 0;
+          transform: translateY(7px);
+          font-weight: bold;
+          svg {
+            overflow: visible;
+            width: 30px;
+            height: 30px;
+            path,
+            circle {
+              fill: var(--border-color);
+            }
+          }
+          #hide {
+            display: none;
+          }
+        }
       }
       div {
         @include full-flex-row;
         justify-content: space-between;
         width: 100%;
-        margin-top: 20px;
+        margin-top: 35px;
         button {
           @include btns;
         }
       }
+    }
+  }
+}
+
+.input_ok {
+  font-size: 15px;
+  transform: translateY(-20px);
+}
+
+.load_fade_in {
+  animation: fade_in_loader 0.5s ease forwards;
+  @keyframes fade_in_loader {
+    0% {
+      opacity: 0;
+      pointer-events: all;
+    }
+    100% {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+.load_fade_out {
+  animation: fade_out_loader 0.5s ease forwards;
+  @keyframes fade_out_loader {
+    0% {
+      opacity: 1;
+      pointer-events: all;
+    }
+    100% {
+      opacity: 0;
+      pointer-events: none;
     }
   }
 }

@@ -37,23 +37,114 @@
     <title>SignIn / SignUp</title>
   </head>
   <body>
+    <div id="loader">
+      <h1>Loading...</h1>
+    </div>
     <div id="logo">
       <h1>D-Chat</h1>
     </div>
     <section id="signup_section">
       <div id="form_container">
         <h1>Sign In / Sign Up</h1>
-        <h3 id="error"></h3>
+        <span id="line"></span>
+        <div id="error"></div>
         <form id="sign">
-          <input id="alias" placeholder="username" required />
-          <input
-            id="pass"
-            type="password"
-            placeholder="passphrase"
-            minlength="8"
-            autocomplete="on"
-            required
-          />
+          <div class="input_container">
+            <input
+              id="alias"
+              type="text"
+              minlength="4"
+              maxlength="20"
+              required
+            />
+            <label id="alias_label">Username</label>
+          </div>
+          <div class="input_container">
+            <input
+              id="pass"
+              type="password"
+              minlength="8"
+              maxlength="32"
+              autocomplete="on"
+              required
+            />
+            <label id="password_label">Password</label>
+            <span id="show_hide" onclick="handleHideShowPassword()">
+              <svg
+                id="hide"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:svgjs="http://svgjs.com/svgjs"
+                width="512"
+                height="512"
+                x="0"
+                y="0"
+                viewBox="0 0 512 512"
+                style="enable-background: new 0 0 512 512"
+                xml:space="preserve"
+                class=""
+              >
+                <g>
+                  <g xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="m436.193 169.626c-5.507-4.735-11.04-9.258-16.589-13.59l-64.701 64.701c3.942 11.027 6.097 22.898 6.097 35.263 0 57.897-47.103 105-105 105-12.365 0-24.236-2.155-35.263-6.098l-48.558 48.558c28.356 11.632 56.481 17.54 83.821 17.54 32.657 0 66.432-8.396 100.384-24.955 26.662-13.005 53.514-31.063 79.809-53.671 44.455-38.226 71.841-76.024 72.984-77.615 3.765-5.232 3.765-12.285 0-17.518-1.144-1.591-28.529-39.389-72.984-77.615z"
+                      fill="#000000"
+                      data-original="#000000"
+                      class=""
+                    ></path>
+                    <path
+                      d="m256 331c41.355 0 75-33.645 75-75 0-3.598-.27-7.134-.763-10.598l-84.835 84.835c3.465.493 7 .763 10.598.763z"
+                      fill="#000000"
+                      data-original="#000000"
+                      class=""
+                    ></path>
+                    <path
+                      d="m507.607 4.394c-5.857-5.857-15.355-5.857-21.213 0l-117.848 117.848c-4.056-2.208-8.111-4.311-12.162-6.286-33.952-16.56-67.727-24.956-100.384-24.956s-66.432 8.396-100.384 24.955c-26.662 13.005-53.514 31.063-79.809 53.671-44.454 38.226-71.84 76.024-72.984 77.615-3.765 5.232-3.765 12.285 0 17.518 1.144 1.591 28.529 39.39 72.984 77.615 13.623 11.713 27.396 22.192 41.214 31.391l-112.627 112.629c-5.858 5.857-5.858 15.355 0 21.213 2.929 2.928 6.767 4.393 10.606 4.393s7.678-1.465 10.606-4.394l482-482c5.859-5.857 5.859-15.355.001-21.212zm-356.607 251.606c0-57.897 47.103-105 105-105 23.551 0 45.315 7.794 62.85 20.938l-21.52 21.52c-11.859-7.864-26.065-12.458-41.33-12.458-41.355 0-75 33.645-75 75 0 15.264 4.594 29.47 12.458 41.33l-21.52 21.52c-13.144-17.535-20.938-39.299-20.938-62.85z"
+                      fill="#000000"
+                      data-original="#000000"
+                      class=""
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+              <svg
+                id="show"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:svgjs="http://svgjs.com/svgjs"
+                width="512"
+                height="512"
+                x="0"
+                y="0"
+                viewBox="0 0 519.643 519.643"
+                style="enable-background: new 0 0 512 512"
+                xml:space="preserve"
+                class=""
+              >
+                <g>
+                  <circle
+                    xmlns="http://www.w3.org/2000/svg"
+                    cx="259.823"
+                    cy="259.866"
+                    r="80"
+                    fill="#000000"
+                    data-original="#000000"
+                    class=""
+                  ></circle>
+                  <path
+                    xmlns="http://www.w3.org/2000/svg"
+                    d="m511.673 237.706c-61.494-74.31-154.579-145.84-251.85-145.84-97.29 0-190.397 71.58-251.85 145.84-10.63 12.84-10.63 31.48 0 44.32 15.45 18.67 47.84 54.71 91.1 86.2 108.949 79.312 212.311 79.487 321.5 0 43.26-31.49 75.65-67.53 91.1-86.2 10.599-12.815 10.654-31.438 0-44.32zm-251.85-89.84c61.76 0 112 50.24 112 112s-50.24 112-112 112-112-50.24-112-112 50.24-112 112-112z"
+                    fill="#000000"
+                    data-original="#000000"
+                    class=""
+                  ></path>
+                </g>
+              </svg>
+            </span>
+          </div>
+
           <div>
             <button type="submit" id="in">Sign In</button>
             <button type="button" id="up">Sign Up</button>
@@ -69,6 +160,31 @@
       let SEA = Gun.SEA;
       const user = gun.user();
       user.recall({ sessionStorage: true });
+      window.addEventListener("DOMContentLoaded", (event) => {
+        document.getElementById("alias").addEventListener("input", (e) => {
+          if (e.target.value != "") {
+            document.getElementById("alias_label").classList.add("input_ok");
+          }
+        });
+        document.getElementById("pass").addEventListener("input", (e) => {
+          if (e.target.value != "") {
+            document.getElementById("password_label").classList.add("input_ok");
+          }
+        });
+      });
+      const handleHideShowPassword = () => {
+        let pass = document.getElementById("pass");
+        let show_hide = document.getElementById("show_hide");
+        if (pass.type == "password") {
+          pass.type = "text";
+          $("#show").hide();
+          $("#hide").show();
+        } else {
+          pass.type = "password";
+          $("#hide").hide();
+          $("#show").show();
+        }
+      };
     </script>
     <script src="./static/js/handleSea.js"></script>
     <script src="./static/js/handleSignedIn.js"></script>

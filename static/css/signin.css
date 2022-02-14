@@ -1,3 +1,29 @@
+#loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: var(--bg-color-t);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+}
+
 #logo {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -58,21 +84,71 @@ section #form_container {
           justify-content: flex-start;
   border: 3px solid var(--border-color);
   border-radius: 15px;
-  padding: 15px 30px 15px 30px;
+  padding: 15px 0px 20px 0px;
   width: 300px;
-  height: 400px;
+  min-height: 410px;
+  max-height: 430px;
 }
 
 section #form_container h1 {
   margin-bottom: 10px;
 }
 
-section #form_container h3 {
+section #form_container #line {
+  width: 100%;
+  height: 3px !important;
+  background: var(--border-color);
+}
+
+section #form_container #error {
+  width: 100%;
+  margin-top: 10px;
+}
+
+section #form_container #error h3 {
   color: var(--warning-color);
+  width: 100%;
+  padding: 0 15px 0 15px;
+  -webkit-animation: error_fadein 0.5s ease forwards;
+          animation: error_fadein 0.5s ease forwards;
+  font-weight: bold;
+}
+
+@-webkit-keyframes error_fadein {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    height: 50px;
+    opacity: 0;
+  }
+  100% {
+    height: 50px;
+    opacity: 1;
+  }
+}
+
+@keyframes error_fadein {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    height: 50px;
+    opacity: 0;
+  }
+  100% {
+    height: 50px;
+    opacity: 1;
+  }
 }
 
 section #form_container form {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
   width: 100%;
+  padding: 15px 30px 15px 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -89,7 +165,25 @@ section #form_container form {
   text-align: center;
 }
 
-section #form_container form input {
+section #form_container form .input_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
+section #form_container form .input_container input {
   background-color: transparent;
   border: none;
   border-bottom: 2px solid var(--border-color);
@@ -98,6 +192,54 @@ section #form_container form input {
   margin-top: 10px;
   outline: none;
   padding: 0 5px 0 5px;
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+section #form_container form .input_container input:focus ~ label {
+  font-size: 15px;
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+}
+
+section #form_container form .input_container #pass {
+  padding-right: 40px;
+}
+
+section #form_container form .input_container label {
+  width: 100%;
+  padding-left: 5px;
+  text-align: start;
+  position: absolute;
+  pointer-events: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+section #form_container form .input_container span {
+  position: absolute;
+  right: 0;
+  -webkit-transform: translateY(7px);
+          transform: translateY(7px);
+  font-weight: bold;
+}
+
+section #form_container form .input_container span svg {
+  overflow: visible;
+  width: 30px;
+  height: 30px;
+}
+
+section #form_container form .input_container span svg path,
+section #form_container form .input_container span svg circle {
+  fill: var(--border-color);
+}
+
+section #form_container form .input_container span #hide {
+  display: none;
 }
 
 section #form_container form div {
@@ -119,7 +261,7 @@ section #form_container form div {
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 35px;
 }
 
 section #form_container form div button {
@@ -129,6 +271,74 @@ section #form_container form div button {
   border-radius: 10px;
   border: none;
   font-size: 20px;
+  font-weight: bold;
   color: var(--text-color);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+section #form_container form div button:hover {
+  background-color: var(--border-color-light);
+  color: white;
+}
+
+.input_ok {
+  font-size: 15px;
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+}
+
+.load_fade_in {
+  -webkit-animation: fade_in_loader 0.5s ease forwards;
+          animation: fade_in_loader 0.5s ease forwards;
+}
+
+@-webkit-keyframes fade_in_loader {
+  0% {
+    opacity: 0;
+    pointer-events: all;
+  }
+  100% {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+@keyframes fade_in_loader {
+  0% {
+    opacity: 0;
+    pointer-events: all;
+  }
+  100% {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.load_fade_out {
+  -webkit-animation: fade_out_loader 0.5s ease forwards;
+          animation: fade_out_loader 0.5s ease forwards;
+}
+
+@-webkit-keyframes fade_out_loader {
+  0% {
+    opacity: 1;
+    pointer-events: all;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@keyframes fade_out_loader {
+  0% {
+    opacity: 1;
+    pointer-events: all;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 /*# sourceMappingURL=signin.css.map */
