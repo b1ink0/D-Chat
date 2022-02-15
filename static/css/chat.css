@@ -1,1 +1,102 @@
-/* No CSS *//*# sourceMappingURL=chat.css.map */
+#logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#logo h1 {
+  font-size: 35px;
+}
+
+#btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 10px;
+  border-top: 3px solid var(--border-color);
+  border-bottom: 3px solid var(--border-color);
+  padding: 5px 0 5px 0;
+}
+
+#btns button {
+  background-color: none;
+  background: none;
+  border: none;
+}
+
+#btns button svg {
+  overflow: visible;
+  width: 30px;
+  height: 30px;
+}
+
+#btns button svg:hover path {
+  fill: var(--border-color);
+}
+
+#btns button svg path,
+#btns button svg circle {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  fill: var(--text-color);
+}
+
+#chats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+#chats button {
+  width: 100%;
+  background: none;
+  color: var(--text-color);
+  border: none;
+  border-top: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
+  font-size: 25px;
+  padding: 10px 0 10px 0;
+}
+
+#chats button:nth-child(1) {
+  border-top: none;
+}
+/*# sourceMappingURL=chat.css.map */
