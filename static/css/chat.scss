@@ -57,6 +57,7 @@
   width: 100%;
   #chat_nav {
     @include full-flex-row;
+    z-index: 10;
     border-top: 3px solid var(--border-color);
     border-bottom: 3px solid var(--border-color);
     position: fixed;
@@ -64,6 +65,7 @@
     left: 0;
     width: 100%;
     height: 50px;
+    background: var(--bg-color);
     h3 {
       font-size: 25px;
     }
@@ -163,6 +165,7 @@
       width: 100%;
       height: 50px;
       padding: 0 10px 0 10px;
+      background: var(--bg-color);
       input {
         outline: none;
         background: var(--color-4);
