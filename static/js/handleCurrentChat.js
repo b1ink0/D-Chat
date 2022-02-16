@@ -57,7 +57,7 @@ const handleCurrentChat = (publicKey, un, pk = "", flag = false) => {
                           <div class="sub_chat" id="${key}">
                             <ul></ul>
                             <form id="f${key}">
-                              <input id="i${key}" type="text" maxlength="117" placeholder="Type Message..." required/>
+                              <input id="i${key}" type="text" autocomplete="off" maxlength="117" placeholder="Type Message..." required/>
                               <button type="submit">
                                 <svg
                                 xmlns="http://www.w3.org/2000/svg"
