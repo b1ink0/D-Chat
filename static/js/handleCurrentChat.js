@@ -133,10 +133,10 @@ const handleCurrentChat = (publicKey, un, pk = "", flag = false) => {
                               li.appendChild(span);
                               $(`#${key} ul`).append(li);
                               document
-                                .querySelector("#test_638472 > ul")
+                                .querySelector(".sub_chat > ul")
                                 .scrollTo(
                                   0,
-                                  document.querySelector("#test_638472 > ul")
+                                  document.querySelector(".sub_chat > ul")
                                     .scrollHeight
                                 );
                             }
