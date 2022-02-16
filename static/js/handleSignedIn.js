@@ -40,4 +40,6 @@ const handleSignedIn = () => {
   }
 };
 
+handleSignedInChat = handleSignedIn;
+
 handleSignedIn();

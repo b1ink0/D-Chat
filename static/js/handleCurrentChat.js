@@ -132,13 +132,15 @@ const handleCurrentChat = (publicKey, un, pk = "", flag = false) => {
                               span.appendChild(text);
                               li.appendChild(span);
                               $(`#${key} ul`).append(li);
-                              document
-                                .querySelector(".sub_chat > ul")
-                                .scrollTo(
-                                  0,
-                                  document.querySelector(".sub_chat > ul")
-                                    .scrollHeight
-                                );
+                              if (document.querySelector(".sub_chat ul")) {
+                                document
+                                  .querySelector(".sub_chat ul")
+                                  .scrollTo(
+                                    0,
+                                    document.querySelector(".sub_chat ul")
+                                      .scrollHeight
+                                  );
+                              }
                             }
                           }
                         });
