@@ -27,7 +27,7 @@ const handleGetAllChats = () => {
 
   let pubCode = handleCodeGen(userData.pub);
   gun.get(pubCode).once(() => {
-    gun.get(pubCode).on((n) => {
+    gun.get(pubCode).once((n) => {
       Object.keys(n).forEach((m) => {
         if (m != "_") {
           gun
