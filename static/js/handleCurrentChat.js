@@ -107,6 +107,7 @@ const handleCurrentChat = (publicKey, un, pk = "", flag = false) => {
                           };
                           temp.set(JSON.stringify(t));
                           $(`#i${key}`).val("");
+                          $(`#i${key}`).focus();
                         });
                         let t = gun.get(pubKey).get(key).get("sent");
                         t.map().once((data) => {
