@@ -58,6 +58,9 @@
 
 #chat {
   width: 100%;
+  #no_message {
+    display: none;
+  }
   #chat_nav {
     @include full-flex-row;
     z-index: 10;
@@ -169,18 +172,29 @@
       height: 50px;
       padding: 0 10px 0 10px;
       background: var(--bg-color);
-      input {
-        outline: none;
-        background: var(--color-4);
-        border: none;
+      #input_container {
+        @include full-flex-col;
         width: calc(100vw - 60px);
         height: 30px;
-        padding: 10px;
-        border-radius: 5px;
-        font-size: 20px;
-        color: var(--text-color);
-        &::placeholder {
+        position: relative;
+        input {
+          outline: none;
+          background: var(--color-4);
+          border: none;
+          width: calc(100vw - 60px);
+          height: 30px;
+          padding: 10px;
+          padding-right: 65px;
+          border-radius: 5px;
+          font-size: 20px;
           color: var(--text-color);
+          &::placeholder {
+            color: var(--text-color);
+          }
+        }
+        span {
+          position: absolute;
+          right: 5px;
         }
       }
       button {
@@ -248,8 +262,12 @@
     }
     .sub_chat form {
       width: 65vw;
-      input {
+      #input_container {
+        @include full-flex-col;
         width: calc(65vw - 60px);
+        input {
+          width: calc(65vw - 60px);
+        }
       }
     }
     #no_message {

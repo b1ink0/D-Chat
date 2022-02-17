@@ -108,6 +108,10 @@
   width: 100%;
 }
 
+#chat #no_message {
+  display: none;
+}
+
 #chat #chat_nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -331,32 +335,58 @@
   background: var(--bg-color);
 }
 
-#chat .sub_chat form input {
+#chat .sub_chat form #input_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  width: calc(100vw - 60px);
+  height: 30px;
+  position: relative;
+}
+
+#chat .sub_chat form #input_container input {
   outline: none;
   background: var(--color-4);
   border: none;
   width: calc(100vw - 60px);
   height: 30px;
   padding: 10px;
+  padding-right: 65px;
   border-radius: 5px;
   font-size: 20px;
   color: var(--text-color);
 }
 
-#chat .sub_chat form input::-webkit-input-placeholder {
+#chat .sub_chat form #input_container input::-webkit-input-placeholder {
   color: var(--text-color);
 }
 
-#chat .sub_chat form input:-ms-input-placeholder {
+#chat .sub_chat form #input_container input:-ms-input-placeholder {
   color: var(--text-color);
 }
 
-#chat .sub_chat form input::-ms-input-placeholder {
+#chat .sub_chat form #input_container input::-ms-input-placeholder {
   color: var(--text-color);
 }
 
-#chat .sub_chat form input::placeholder {
+#chat .sub_chat form #input_container input::placeholder {
   color: var(--text-color);
+}
+
+#chat .sub_chat form #input_container span {
+  position: absolute;
+  right: 5px;
 }
 
 #chat .sub_chat form button {
@@ -449,7 +479,24 @@
   #chat .sub_chat form {
     width: 65vw;
   }
-  #chat .sub_chat form input {
+  #chat .sub_chat form #input_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+    width: calc(65vw - 60px);
+  }
+  #chat .sub_chat form #input_container input {
     width: calc(65vw - 60px);
   }
   #chat #no_message {

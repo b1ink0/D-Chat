@@ -60,7 +60,10 @@ const handleCurrentChat = (publicKey, un, pk = "", flag = false) => {
                           <div class="sub_chat" id="${key}">
                             <ul></ul>
                             <form id="f${key}">
-                              <input id="i${key}" type="text" autocomplete="off" maxlength="117" placeholder="Type Message..." required/>
+                              <div id="input_container">
+                                <input id="i${key}" class="chat_input" type="text" autocomplete="off" maxlength="117" placeholder="Type Message..." required/>
+                                <span id="chat_character_count">0/117</span>
+                              </div>
                               <button type="submit">
                                 <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -112,6 +115,13 @@ const handleCurrentChat = (publicKey, un, pk = "", flag = false) => {
                           $(`#i${key}`).val("");
                           $(`#i${key}`).focus();
                         });
+                        document
+                          .querySelector(".chat_input")
+                          .addEventListener("input", (e) =>
+                            $("#chat_character_count").html(
+                              `${e.target.value.length}/117`
+                            )
+                          );
                         let t = gun.get(pubKey).get(key).get("sent");
                         t.map().once((data) => {
                           let temp = JSON.parse(data);
