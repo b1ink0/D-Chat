@@ -17,10 +17,13 @@ const handleCurrentChat = (publicKey, un, pk = "", flag = false) => {
                     Object.keys(doc).forEach((key) => {
                       if (key == un) {
                         let div = document.createElement(key);
-                        $("#logo").hide();
-                        $("#btns").hide();
-                        $("#chats").hide();
-                        $("#chat").show();
+                        if ($(window).width() >= 992) {
+                        } else {
+                          $("#logo").hide();
+                          $("#btns").hide();
+                          $("#chats").hide();
+                          $("#chat").show();
+                        }
                         $("#chat").html(
                           `<div id="chat_nav">
                             <button onclick="handleBack()">

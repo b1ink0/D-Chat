@@ -2,6 +2,8 @@
 #logo {
   @include full-flex-row;
   margin-top: 10px;
+  height: 35px;
+  padding-bottom: 10px;
   h1 {
     font-size: 35px;
   }
@@ -9,7 +11,6 @@
 #btns {
   @include full-flex-row;
   justify-content: space-around;
-  margin-top: 10px;
   border-top: 3px solid var(--border-color);
   border-bottom: 3px solid var(--border-color);
   padding: 5px 0 5px 0;
@@ -37,14 +38,15 @@
 
 #chats {
   @include full-flex-col;
+  justify-content: flex-start;
   overflow-y: scroll;
   width: 100%;
+  height: calc(100vh - 97px);
   button {
     width: 100%;
     background: none;
     color: var(--text-color);
     border: none;
-    border-top: 2px solid var(--border-color);
     border-bottom: 2px solid var(--border-color);
     font-size: 25px;
     padding: 10px 0 10px 0;
@@ -53,6 +55,7 @@
     }
   }
 }
+
 #chat {
   width: 100%;
   #chat_nav {
@@ -181,6 +184,7 @@
         }
       }
       button {
+        @include full-flex-col;
         background: none;
         border: none;
         svg {
@@ -202,14 +206,73 @@
     }
   }
 }
-// #chats:-webkit-scrollbar-track {
-//   border: 1px solid #000;
-//   padding: 2px 0;
-//   background-color: #404040;
-// }
-// #chats:-webkit-scrollbar-thumb {
-//   border-radius: 10px;
-//   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-//   background-color: #737272;
-//   border: 1px solid #000;
-// }
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 0px;
+  background: var(--border-color);
+  -webkit-box-shadow: none;
+}
+
+@media only screen and (min-width: 992px) {
+  body {
+    @include full-flex-row;
+  }
+  #main_container {
+    height: 100vh;
+    width: 35vw;
+    border: 3px solid var(--border-color);
+  }
+  #chat {
+    height: 100vh;
+    width: 65vw;
+    #chat_nav {
+      width: 65vw;
+      left: unset;
+      border-right: 3px solid var(--border-color);
+      button {
+        display: none;
+      }
+    }
+    .sub_chat form {
+      width: 65vw;
+      input {
+        width: calc(65vw - 60px);
+      }
+    }
+    #no_message {
+      @include full-flex-col;
+      height: 100%;
+      width: 100%;
+      border: 3px solid var(--border-color);
+      border-left: none;
+      svg {
+        overflow: visible;
+        width: 100px;
+        height: 100px;
+        &:hover {
+          path {
+            fill: var(--border-color);
+          }
+        }
+        path,
+        circle {
+          transition: all 0.3s;
+          fill: var(--text-color);
+        }
+      }
+    }
+  }
+}

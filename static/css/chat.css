@@ -14,6 +14,8 @@
           flex-direction: row;
   text-align: center;
   margin-top: 10px;
+  height: 35px;
+  padding-bottom: 10px;
 }
 
 #logo h1 {
@@ -37,7 +39,6 @@
   text-align: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  margin-top: 10px;
   border-top: 3px solid var(--border-color);
   border-bottom: 3px solid var(--border-color);
   padding: 5px 0 5px 0;
@@ -81,8 +82,12 @@
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   overflow-y: scroll;
   width: 100%;
+  height: calc(100vh - 97px);
 }
 
 #chats button {
@@ -90,7 +95,6 @@
   background: none;
   color: var(--text-color);
   border: none;
-  border-top: 2px solid var(--border-color);
   border-bottom: 2px solid var(--border-color);
   font-size: 25px;
   padding: 10px 0 10px 0;
@@ -356,6 +360,20 @@
 }
 
 #chat .sub_chat form button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
   background: none;
   border: none;
 }
@@ -375,5 +393,98 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   fill: var(--text-color);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  border-radius: 0px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background: var(--border-color);
+  -webkit-box-shadow: none;
+}
+
+@media only screen and (min-width: 992px) {
+  body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    text-align: center;
+  }
+  #main_container {
+    height: 100vh;
+    width: 35vw;
+    border: 3px solid var(--border-color);
+  }
+  #chat {
+    height: 100vh;
+    width: 65vw;
+  }
+  #chat #chat_nav {
+    width: 65vw;
+    left: unset;
+    border-right: 3px solid var(--border-color);
+  }
+  #chat #chat_nav button {
+    display: none;
+  }
+  #chat .sub_chat form {
+    width: 65vw;
+  }
+  #chat .sub_chat form input {
+    width: calc(65vw - 60px);
+  }
+  #chat #no_message {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    border: 3px solid var(--border-color);
+    border-left: none;
+  }
+  #chat #no_message svg {
+    overflow: visible;
+    width: 100px;
+    height: 100px;
+  }
+  #chat #no_message svg:hover path {
+    fill: var(--border-color);
+  }
+  #chat #no_message svg path,
+  #chat #no_message svg circle {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    fill: var(--text-color);
+  }
 }
 /*# sourceMappingURL=chat.css.map */
