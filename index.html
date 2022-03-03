@@ -6,6 +6,8 @@
     <meta name="keywords" content="HTML, CSS, JavaScript, GunJs" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Aditya Dhade" />
+    <link rel="icon" href="./icons/favicon.ico" />
+    <link rel="manifest" href="minifest.json" />
     <script
       src="https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js"
       integrity="sha512-hI8jEOQLtyzkIiWVygLAcKPradIhgXQUl8I3lk2FUmZ8sZNbSSdHHrWo5mrmsW1Aex+oFZ+UUK7EJTVwyjiFLA=="
@@ -31,14 +33,42 @@
     <title>D-Chat</title>
   </head>
   <body>
-    <h1>D-Chat</h1>
-    <a href="./signin.html">SignIn / SignUp</a>
-    <!-- <input
-      id="inputFileToLoad"
-      type="file"
-      onchange="encodeImageFileAsURL();"
-    /> -->
-    <!-- <div id="imgTest"></div> -->
+    <header>
+      <h1>D-Chat</h1>
+    </header>
+    <section>
+      <h1>Get Started</h1>
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svgjs="http://svgjs.com/svgjs"
+          width="512"
+          height="512"
+          x="0"
+          y="0"
+          viewBox="0 0 447.243 447.243"
+          style="enable-background: new 0 0 512 512"
+          xml:space="preserve"
+          class=""
+        >
+          <g>
+            <g xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <path
+                  d="M420.361,192.229c-1.83-0.297-3.682-0.434-5.535-0.41H99.305l6.88-3.2c6.725-3.183,12.843-7.515,18.08-12.8l88.48-88.48    c11.653-11.124,13.611-29.019,4.64-42.4c-10.441-14.259-30.464-17.355-44.724-6.914c-1.152,0.844-2.247,1.764-3.276,2.754    l-160,160C-3.119,213.269-3.13,233.53,9.36,246.034c0.008,0.008,0.017,0.017,0.025,0.025l160,160    c12.514,12.479,32.775,12.451,45.255-0.063c0.982-0.985,1.899-2.033,2.745-3.137c8.971-13.381,7.013-31.276-4.64-42.4    l-88.32-88.64c-4.695-4.7-10.093-8.641-16-11.68l-9.6-4.32h314.24c16.347,0.607,30.689-10.812,33.76-26.88    C449.654,211.494,437.806,195.059,420.361,192.229z"
+                  fill="#000000"
+                  data-original="#000000"
+                  class=""
+                ></path>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <a href="./signin.html">SignIn / SignUp</a>
+    </section>
     <script>
       const gun = Gun([
         //  "http://localhost:8000/gun",
@@ -48,6 +78,29 @@
       let SEA = Gun.SEA;
       const user = gun.user();
       user.recall({ sessionStorage: true });
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("worker.js")
+            .then(
+              function (registration) {
+                console.log(
+                  "Worker registration successful",
+                  registration.scope
+                );
+              },
+              function (err) {
+                console.log("Worker registration failed", err);
+              }
+            )
+            .catch(function (err) {
+              console.log(err);
+            });
+        });
+      } else {
+        console.log("Service Worker is not supported by browser.");
+      }
     </script>
     <script src="./static/js/index.js"></script>
     <script src="./static/js/image.js"></script>

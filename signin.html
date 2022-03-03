@@ -31,7 +31,8 @@
       rel="stylesheet"
       crossorigin="anonymous"
     />
-
+    <link rel="icon" href="./icons/favicon.ico" />
+    <link rel="manifest" href="minifest.json" />
     <link rel="stylesheet" href="./static/css/common.css" />
     <link rel="stylesheet" href="./static/css/signin.css" />
     <title>SignIn / SignUp</title>
@@ -186,6 +187,28 @@
           $("#show").show();
         }
       };
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("worker.js")
+            .then(
+              function (registration) {
+                console.log(
+                  "Worker registration successful",
+                  registration.scope
+                );
+              },
+              function (err) {
+                console.log("Worker registration failed", err);
+              }
+            )
+            .catch(function (err) {
+              console.log(err);
+            });
+        });
+      } else {
+        console.log("Service Worker is not supported by browser.");
+      }
     </script>
     <script src="./static/js/handleSea.js"></script>
     <script src="./static/js/handleSignedIn.js"></script>

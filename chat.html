@@ -26,6 +26,8 @@
     ></script>
     <link rel="stylesheet" href="./static/css/common.css" />
     <link rel="stylesheet" href="./static/css/chat.css" />
+    <link rel="icon" href="./icons/favicon.ico" />
+    <link rel="manifest" href="minifest.json" />
     <title>D-Chat</title>
   </head>
   <body>
@@ -158,6 +160,29 @@
       let handleDeSea = () => {};
       let keys = {};
       let handleBack = () => {};
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("worker.js")
+            .then(
+              function (registration) {
+                console.log(
+                  "Worker registration successful",
+                  registration.scope
+                );
+              },
+              function (err) {
+                console.log("Worker registration failed", err);
+              }
+            )
+            .catch(function (err) {
+              console.log(err);
+            });
+        });
+      } else {
+        console.log("Service Worker is not supported by browser.");
+      }
     </script>
     <script src="./static/js/handleChatRequest.js"></script>
     <script src="./static/js/handleAutoSignin.js"></script>
